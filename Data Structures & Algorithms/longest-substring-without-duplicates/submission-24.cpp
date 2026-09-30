@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        
+        int l = 0;
+        int r = 0;
+        int longest = 0;
+
+        unordered_map<int, int> seen;
+
+        while (r < s.size()) {
+
+            auto it = seen.find(s[r]);
+
+            if (it != seen.end()) {
+
+                l = max(l, it->second+1);
+
+            }
+
+            seen[s[r]] = r;
+
+            ++r;
+
+            longest = max(longest, r-l);
+
+        }
+
+        return longest;
+
+    }
+};
